@@ -59,6 +59,8 @@ def validate(model, val_loader, criterion):
     print(f'Validation Loss: {val_loss:.6f} Acc: {val_accuracy:.2f}%')
     return val_accuracy
 
+device = "cuda" if torch.cuda.is_available() else "cpu"
+
 train_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_train, batch_size=32, shuffle=True)
 val_loader = torch.utils.data.DataLoader(tiny_imagenet_dataset_val, batch_size=32, shuffle=False)
 
