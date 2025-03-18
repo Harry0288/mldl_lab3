@@ -102,7 +102,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 best_acc = 0
 
-wandb.init("lab3")
+wandb.init(project="lab3")
 config = wandb.config
 config.learning_rate = 0.001
 
