@@ -1,5 +1,6 @@
 from models.model import CustomNet
 import torch
+import wandb
 from torch import nn
 import torch.nn.functional as F
 
@@ -68,6 +69,10 @@ optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
 
 best_acc = 0
 
+wandb.init("lab3")
+config = wandb.config
+config.learning_rate = 0.001
+
 # Run the training process for {num_epochs} epochs
 num_epochs = 10
 for epoch in range(1, num_epochs + 1):
@@ -79,6 +84,7 @@ for epoch in range(1, num_epochs + 1):
 
     # Best validation accuracy
     best_acc = max(best_acc, val_accuracy)
+    wandb.log({"val_accuracy": val_accuracy, "best_acc": best_acc})
 
 
 print(f'Best validation accuracy: {best_acc:.2f}%')
